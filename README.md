@@ -186,3 +186,30 @@ const withContext = addContext('Answer the question', [
 ## License
 
 MIT
+
+---
+
+## Français
+
+**prompt-engineering-toolkit** est une boîte à outils TypeScript complète pour concevoir, tester et optimiser des prompts pour les modèles d'IA. Elle offre un moteur de templates avec interpolation de variables et boucles, un système de chaînes de prompts avec exécution parallèle, un optimiseur A/B pour comparer les variations, une bibliothèque catégorisée avec recherche et versioning, ainsi qu'un évaluateur de réponses avec détection d'hallucinations.
+
+### Installation
+
+```bash
+npm install prompt-engineering-toolkit
+```
+
+### Utilisation
+
+```typescript
+import { PromptTemplate, PromptChain, PromptLibrary } from 'prompt-engineering-toolkit';
+
+// Créer un template avec variables
+const template = PromptTemplate.fromString('Écris un email {{ton}} sur {{sujet}}');
+const prompt = template.fill({ ton: 'professionnel', sujet: 'résultats trimestriels' });
+
+// Enchaîner des prompts
+const chain = new PromptChain('analyser-et-corriger', executor)
+  .addStep({ promptId: 'Analyse: {{code}}', inputMapping: { code: 'code' }, outputKey: 'analyse' })
+  .addStep({ promptId: 'Corrige: {{analyse}}', inputMapping: { analyse: 'analyse' }, outputKey: 'codeCorrige' });
+```
